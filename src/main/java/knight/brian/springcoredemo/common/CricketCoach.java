@@ -1,15 +1,24 @@
 package knight.brian.springcoredemo.common;
 
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.stereotype.Component;
 
 @Component
-@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class CricketCoach implements Coach {
 
     public CricketCoach() {
         System.out.println("In constructor: " + getClass().getSimpleName());
+    }
+
+    @PostConstruct
+    public void customInitialization() {
+        System.out.println("In customInitialization(): " + getClass().getSimpleName());
+    }
+
+    @PreDestroy
+    public void customCleanUp() {
+        System.out.println("In customCleanUp(): " + getClass().getSimpleName());
     }
 
     @Override
